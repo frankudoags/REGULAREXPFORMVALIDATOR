@@ -1,13 +1,17 @@
 const names = document.getElementById('name'),
         zip = document.getElementById('zip'),
         email = document.getElementById('email'),
-        phone = document.getElementById('phone');
+        phone = document.getElementById('phone'),
+        password = document.getElementById('password'),
+        confirmPassword = document.getElementById('confirm-password');
 
 
         names.addEventListener('blur',validateName);
         zip.addEventListener('blur',validateZip);
         email.addEventListener('blur',validateEmail);
         phone.addEventListener('blur',validatePhone);
+        password.addEventListener('blur',validatePassword);
+        confirmPassword.addEventListener('blur',validateConfirmPassword);
 
 function validateName() {
 const re = /^[a-zA-Z]{2,20}$/i;
@@ -45,5 +49,26 @@ function validatePhone() {
         zip.classList.add('is-invalid');
     }else {
         zip.classList.remove('is-invalid');
+    }
+ }
+
+ function validatePassword() {
+    const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+
+    if(!re.test(password.value)){
+        password.classList.add('is-invalid');
+    }else {
+        password.classList.remove('is-invalid');
+    }
+
+}
+
+ function validateConfirmPassword() {
+
+    if(confirmPassword.value !== password.value){
+        confirmPassword.classList.add('is-invalid');
+       
+    }else {
+        confirmPassword.classList.remove('is-invalid');
     }
  }
